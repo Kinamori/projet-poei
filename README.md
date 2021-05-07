@@ -1,4 +1,4 @@
-# Setup
+# Setup 
 
 mkdir jenkins-data/ nexus-data/ sonarqube/
 
@@ -89,3 +89,7 @@ Payload URL : http://<my-jenkins-ip>:8080/github-webhook
 Content type : json
 Check Just push event
 Check Active
+
+Alternative 
+
+Jenkins -> projet -> configure -> build triggers -> Check poll SCM et mettre * * * * * pour check toutes les minutes
