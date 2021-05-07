@@ -82,4 +82,10 @@ OK
 
 # Tweeks
 Pour build après chaque commit
-Jenkins -> projet -> configure -> build triggers -> Check poll SCM et mettre * * * * * pour check toutes les minutes
+Jenkins -> Manage Jenkins -> Manage Plugin -> Github Integration -> install without restart
+Restart jenkins
+Dans le projet github -> settings -> webhooks -> add new webhook
+Payload URL : http://<my-jenkins-ip>:8080/github-webhook
+Content type : json
+Check Just push event
+Check Active
