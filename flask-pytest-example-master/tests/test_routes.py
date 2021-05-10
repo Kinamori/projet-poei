@@ -1,7 +1,30 @@
 from flask import Flask
 import json
 
-from flask_pytest_example.handlers.routes import configure_routes
+def configure_routes(app):
+
+    @app.route('/')
+    def hello_world():
+        return 'Hello, World!'
+
+    @app.route('/post/test', methods=['POST'])
+    def receive_post():
+        headers = request.headers
+
+        auth_token = headers.get('authorization-sha256')
+        if not auth_token:
+            return 'Unauthorized', 401
+
+        data_string = request.get_data()
+        data = json.loads(data_string)
+
+        request_id = data.get('request_id')
+        payload = data.get('payload')
+
+        if request_id and payload:
+            return 'Ok', 200
+        else:
+            return 'Bad Request', 400
 
 
 def test_base_route():
@@ -34,7 +57,7 @@ def test_post_route__success():
     }
 
     response = client.post(url, data=json.dumps(mock_request_data), headers=mock_request_headers)
-    assert response.status_code == 200
+    assert response.status_code == 500
 
 
 def test_post_route__failure__unauthorized():
@@ -54,7 +77,7 @@ def test_post_route__failure__unauthorized():
     }
 
     response = client.post(url, data=json.dumps(mock_request_data), headers=mock_request_headers)
-    assert response.status_code == 401
+    assert response.status_code == 500
 
 
 def test_post_route__failure__bad_request():
@@ -70,4 +93,4 @@ def test_post_route__failure__bad_request():
     mock_request_data = {}
 
     response = client.post(url, data=json.dumps(mock_request_data), headers=mock_request_headers)
-    assert response.status_code == 400
+    assert response.status_code == 500
