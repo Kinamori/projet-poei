@@ -12,7 +12,6 @@ pipeline {
                 sh '''
                     cd flask-pytest-example-master
                     pip3 install -r requirements.txt
-                    cd tests
                     pytest
                 '''
           }
