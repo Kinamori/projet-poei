@@ -20,9 +20,9 @@ pipeline {
     stage('Analyse code : Sonarqube') {
     steps {
     script {
-       def scannerHome = tool 'SonarQube Scanner';
+       def scannerHome = tool 'Sonarqube Scanner';
            withSonarQubeEnv('Sonarqube'){
-           sh " ${tool("SonarQube Scanner")}/bin/sonar-scanner \
+           sh " ${tool("Sonarqube Scanner")}/bin/sonar-scanner \
            -Dsonar.projectKey=Projet_CI \
            -Dsonar.sources=. \
            -Dsonar.css.node=. \
