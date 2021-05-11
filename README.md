@@ -106,7 +106,7 @@ Name : Sonarqube \
 server URL : http://<my-sonarqube-ip>:9000 \
 Server authentication token -> add \
 Kind : Secret text \
-Secret : [le token copier lors de la configuration de sonarqube](###Token) \
+Secret : [le token copier lors de la configuration de sonarqube](#Token) \
 id: token sonarqube \
 Save 
 
