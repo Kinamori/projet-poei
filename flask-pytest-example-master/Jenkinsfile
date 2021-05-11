@@ -37,6 +37,7 @@ pipeline {
         steps {
                 sh '''
                     tar -czvf archive$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/projet_pipeline
+                    rm -f /var/jenkins_home/workspace/projet_pipeline/archive*.tar.gz
                     curl -v -u admin:root --upload-file /var/jenkins_home/workspace/projet_pipeline/archive$BUILD_NUMBER.tar.gz http://172.19.0.3:8081/repository/projet_pipeline/
                 '''
           }
