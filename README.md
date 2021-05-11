@@ -52,6 +52,7 @@ Scénario de test:
 Installer docker https://docs.docker.com/get-docker/
 
 git clone https://github.com/Kinamori/projet-poei.git \
+cd projet-poei \
 mkdir jenkins-data/ nexus-data/ sonarqube/
 
 docker-compose up -d
