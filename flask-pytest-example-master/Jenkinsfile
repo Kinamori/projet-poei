@@ -25,7 +25,7 @@ pipeline {
            sh " ${tool("Sonarqube Scanner")}/bin/sonar-scanner \
            -Dsonar.projectKey=projet_pipeline \
            -Dsonar.sources=. \
-           -Dsonar.css.node=. \
+           -Dsonar.css.node=. 
                }
     }
            }
