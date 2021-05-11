@@ -25,9 +25,7 @@ pipeline {
            sh " ${tool("Sonarqube Scanner")}/bin/sonar-scanner \
            -Dsonar.projectKey=projet_pipeline \
            -Dsonar.sources=. \
-           -Dsonar.css.node=. \
-           -Dsonar.host.url=http://172.19.0.2:9000 \
-           -Dsonar.login=933f34d817d7ef4b8b87944525c17b02c74d3743"
+           -Dsonar.css.node=. 
                }
     }
            }
@@ -36,7 +34,7 @@ pipeline {
         stage('Store Artefact : nexus'){        
         steps {
                 sh '''
-                    tar -czf archive$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/projet_pipeline
+                    tar -czvf archive$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/projet_pipeline
                     curl -v -u admin:root --upload-file /var/jenkins_home/workspace/projet_pipeline/archive$BUILD_NUMBER.tar.gz http://172.19.0.3:8081/repository/projet_pipeline/
                 '''
           }
