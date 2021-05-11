@@ -25,7 +25,9 @@ pipeline {
            sh " ${tool("Sonarqube Scanner")}/bin/sonar-scanner \
            -Dsonar.projectKey=projet_pipeline \
            -Dsonar.sources=. \
-           -Dsonar.css.node=. 
+           -Dsonar.css.node=. \
+           -Dsonar.host.url=http://172.19.0.2:9000 \
+           -Dsonar.login=933f34d817d7ef4b8b87944525c17b02c74d3743"
                }
     }
            }
