@@ -23,11 +23,11 @@ pipeline {
        def scannerHome = tool 'Sonarqube Scanner';
            withSonarQubeEnv('Sonarqube'){
            sh " ${tool("Sonarqube Scanner")}/bin/sonar-scanner \
-           -Dsonar.projectKey=Projet_CI \
+           -Dsonar.projectKey=projet_pipeline \
            -Dsonar.sources=. \
            -Dsonar.css.node=. \
-           -Dsonar.host.url=http://172.19.0.2:9000 \
-           -Dsonar.login=761d886664b08d3a93057a4ce76fca96b4a73254"
+           -Dsonar.host.url=http://172.19.0.3:9000 \
+           -Dsonar.login=933f34d817d7ef4b8b87944525c17b02c74d3743"
                }
     }
            }
@@ -37,7 +37,7 @@ pipeline {
         steps {
                 sh '''
                     tar -czf archive$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/projet_pipeline
-                    curl -v -u admin:root --upload-file /var/jenkins_home/workspace/projet_pipeline/archive$BUILD_NUMBER.tar.gz http://172.19.0.3:8081/repository/projet-pipeline/
+                    curl -v -u admin:root --upload-file /var/jenkins_home/workspace/projet_pipeline/archive$BUILD_NUMBER.tar.gz http://172.19.0.2:8081/repository/projet_pipeline/
                 '''
           }
 
