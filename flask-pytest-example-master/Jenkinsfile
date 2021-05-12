@@ -48,5 +48,7 @@ pipeline {
                 sh '''
                     curl http://172.19.0.2:8081/repository/projet_pipeline/archive$BUILD_NUMBER.tar.gz
                 '''
+            }
+        }
     }  
 }
