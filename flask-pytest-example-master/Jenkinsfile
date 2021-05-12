@@ -59,7 +59,7 @@ pipeline {
                     cd /var/jenkins_home/prod/
                     tar xzvf projet.tar.gz
                     cd projet_pipeline
-                    . /venv/bin/activate
+                    . venv/bin/activate
                     cd deploy_project
                     ansible-playbook -i hosts.yaml script.yml
                 '''
