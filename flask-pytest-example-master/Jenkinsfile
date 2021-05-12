@@ -38,7 +38,7 @@ pipeline {
         steps {
                 sh '''
                     cd /var/jenkins_home/workspace
-                    rm -f /var/jenkins_home/workspace/projet_pipeline/archive*.tar.gz
+                    rm -f archive*.tar.gz
                     tar -czvf archive$BUILD_NUMBER.tar.gz projet_pipeline
                     curl -v -u admin:root --upload-file archive$BUILD_NUMBER.tar.gz http://172.19.0.3:8081/repository/projet_pipeline/
                 '''
@@ -48,7 +48,13 @@ pipeline {
         stage('Get Artefact : nexus') {
             steps {
                 sh '''
-                    curl http://172.19.0.3:8081/repository/projet_pipeline/archive$BUILD_NUMBER.tar.gz projet.tar.gz
+                    cd /var/jenkins_home/prod/
+                    curl http://172.19.0.3:8081/repository/projet_pipeline/archive$BUILD_NUMBER.tar.gz projet.tar.gz --output projet.tar.gz
+                    tar xzvf projet.tar.gz
+                    cd projet_pipeline
+                    . /venv/bin/activate
+                    cd deploy_project
+                    ansible-playbook -i hosts.yaml script.yml
                 '''
             }
         }
