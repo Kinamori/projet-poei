@@ -58,5 +58,17 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy app : ansible') {
+            steps {
+                sh '''
+                    cd /var/jenkins_home/prod/
+                    tar xzvf projet.tar.gz
+                    cd projet_pipeline
+                    . /venv/bin/activate
+                    cd deploy_project
+                    ansible-playbook -i hosts.yaml script.yml
+                '''
+            }
+        }
     }  
 }
