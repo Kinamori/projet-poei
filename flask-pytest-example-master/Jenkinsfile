@@ -49,7 +49,7 @@ pipeline {
             steps {
                 sh '''
                     cd /var/jenkins_home/prod/
-                    curl http://172.19.0.3:8081/repository/projet_pipeline/archive$BUILD_NUMBER.tar.gz projet.tar.gz --output projet.tar.gz
+                    curl http://172.19.0.3:8081/repository/projet_pipeline/archive$BUILD_NUMBER.tar.gz --output projet.tar.gz
                     tar xzvf projet.tar.gz
                     cd projet_pipeline
                     . /venv/bin/activate
