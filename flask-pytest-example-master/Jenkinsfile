@@ -26,7 +26,7 @@ pipeline {
            -Dsonar.projectKey=projet_pipeline \
            -Dsonar.sources=. \
            -Dsonar.css.node=. \
-           -Dsonar.host.url=http://172.19.0.3:9000 \
+           -Dsonar.host.url=http://172.19.0.2:9000 \
            -Dsonar.login=933f34d817d7ef4b8b87944525c17b02c74d3743 \
            -Dsonar.exclusions=**/venv/**"
                }
@@ -40,7 +40,7 @@ pipeline {
                     cd /var/jenkins_home/workspace
                     rm -f /var/jenkins_home/workspace/projet_pipeline/archive*.tar.gz
                     tar -czvf archive$BUILD_NUMBER.tar.gz projet_pipeline
-                    curl -v -u admin:root --upload-file archive$BUILD_NUMBER.tar.gz http://172.19.0.2:8081/repository/projet_pipeline/
+                    curl -v -u admin:root --upload-file archive$BUILD_NUMBER.tar.gz http://172.19.0.3:8081/repository/projet_pipeline/
                 '''
           }
 
@@ -48,7 +48,7 @@ pipeline {
         stage('Get Artefact : nexus') {
             steps {
                 sh '''
-                    curl http://172.19.0.2:8081/repository/projet_pipeline/archive$BUILD_NUMBER.tar.gz
+                    curl http://172.19.0.3:8081/repository/projet_pipeline/archive$BUILD_NUMBER.tar.gz
                 '''
             }
         }
