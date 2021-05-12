@@ -37,9 +37,10 @@ pipeline {
         stage('Store Artefact : nexus'){        
         steps {
                 sh '''
+                    cd /var/jenkins_home/workspace
                     rm -f /var/jenkins_home/workspace/projet_pipeline/archive*.tar.gz
-                    tar -czvf archive$BUILD_NUMBER.tar.gz /var/jenkins_home/workspace/projet_pipeline
-                    curl -v -u admin:root --upload-file /var/jenkins_home/workspace/projet_pipeline/archive$BUILD_NUMBER.tar.gz http://172.19.0.2:8081/repository/projet_pipeline/
+                    tar -czvf archive$BUILD_NUMBER.tar.gz projet_pipeline
+                    curl -v -u admin:root --upload-file archive$BUILD_NUMBER.tar.gz http://172.19.0.2:8081/repository/projet_pipeline/
                 '''
           }
 
